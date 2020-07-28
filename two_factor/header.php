@@ -1,10 +1,6 @@
 <?php
-//Please don't load code on the header of every page if you don't need it on the header of every page.
-// bold("<br>Demo Header.php Loaded");
 
-/*
-if(/*$user->data()->twoEnabled && !$_SESSION['twoAuthenticated'] && currentPage() !== "twofactor.php") {
-    Redirect::to($us_url_root.'usersc/plugins/two_factor/twofactor.php');
+if(currentPage() == "join.php") {
+    require_once($abs_us_root.$us_url_root.'usersc/plugins/two_factor/assets/vendor/autoload.php');
+    $google2fa = new PragmaRX\Google2FA\Google2FA();
 }
-*/
-//Redirect::to($us_url_root.'usersc/plugins/two_factor/twofactor.php');
