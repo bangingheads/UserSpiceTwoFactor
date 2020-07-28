@@ -2,6 +2,7 @@
 
 <?php
 
+global $us_url_root;
 $sessionName = Config::get('session/session_name');
 $userID = Session::get($sessionName);
 $db = DB::getInstance();
