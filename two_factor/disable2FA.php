@@ -31,7 +31,7 @@ $token = Token::generate();
                     <p>Are you sure?</b></p>
                     <p>You will be leaving your account less secure and will have to reenable through the account portal to use two factor again.</p><br><br>
                     <a class="btn btn-primary" href="<?=$us_url_root?>users/account.php" role="button">Leave 2FA Enabled</a>
-                    <a class="btn btn-danger" href="disable2FA.php?confirmed=1&csrf=<?=$token?>" role="button">Disable 2FA</a>
+                    <a class="btn btn-danger" href="<?=$us_url_root?>usersc/plugins/two_factor/disable2FA.php?confirmed=1&csrf=<?=$token?>" role="button">Disable 2FA</a>
                     
                 </div>
             </div>
