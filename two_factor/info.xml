@@ -6,13 +6,13 @@
   <website>https://github.com/bangingheads/UserSpiceTwoFactor</website>
 
 <!-- the version of the plugin iteself -->
-  <version>1.0.2</version>
+  <version>1.0.3</version>
 
 <!-- release date of THIS version -->
-  <release>July 28, 2020</release>
+  <release>Sept 22, 2020</release>
 
 <!-- the last version of UserSpice you tested the plugin with -->
-  <tested>5.1.4</tested>
+  <tested>5.1.6</tested>
 
 <!-- What does your plugin do? -->
   <description>This plugin adds two factor authentication to UserSpice logins. It requires the hooks present in UserSpice 5.1.4+</description>
