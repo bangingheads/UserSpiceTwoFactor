@@ -23,7 +23,7 @@ if($user->data()->twoKey == NULL) {
 if($user->data()->twoEnabled == 1) {
 	Redirect::to($us_url_root . "users/account.php");
 }
-$siteName = $db->query("SELECT site_name FROM settings")->first()->siteName;
+$siteName = $db->query("SELECT site_name FROM settings")->first()->site_name;
 
 $google2fa_url = $google2fa->getQRCodeUrl(
     $siteName,
