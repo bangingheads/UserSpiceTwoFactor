@@ -25,11 +25,15 @@ if($user->data()->twoEnabled == 1) {
 }
 $siteName = $db->query("SELECT site_name FROM settings")->first()->site_name;
 
+$imagick = extension_loaded('imagick');
+
 $google2fa_url = $google2fa->getQRCodeUrl(
     $siteName,
     $user->data()->email,
     $user->data()->twoKey
 );
+
+if($imagick) {
 $writer = new Writer(
     new ImageRenderer(
         new RendererStyle(400),
@@ -37,6 +41,7 @@ $writer = new Writer(
     )
 );
 $qrcode_image = base64_encode($writer->writeString($google2fa_url));
+}
 ?>
 
 <section class="cid-qABkfm0Pyl mbr-fullscreen mbr-parallax-background" id="header2-0" data-rv-view="1854">
@@ -51,7 +56,7 @@ $qrcode_image = base64_encode($writer->writeString($google2fa_url));
                     <div class="row">
                         <div class="col-xs-12 col-md-9">
                             <h1>Enable Two Factor Authentication</h1>
-                            <p>Scan this QR code with your authenticator app or input the key: <b><?php echo $user->data()->twoKey; ?></b></p>
+                            <p><?php if($imagick) { ?>Scan this QR code with your authenticator app or <?php } ?>Input the key: <b><?php echo $user->data()->twoKey; ?></b></p>
 							<p>You can use any standard MFA app like Google Authenticator or Authy.</p>
                             <p><img src="data:image/png;base64, <?php echo $qrcode_image; ?>"></p>
                             <p>Then enter your 6 digit key here:</p>

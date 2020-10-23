@@ -27,7 +27,7 @@ A user can disable Two Factor Authentication by the same way it was enabled. The
 
 ## Troubleshooting
 
-The QR code generation requires the Imagick PHP plugin. If you do not have this installed you may receive errors on enabling 2FA. More information on install Imagick can be found [here](https://www.php.net/manual/en/imagick.installation.php).
+The QR code generation requires the Imagick PHP plugin. If you do not have this installed you will manually have to enter the 2FA code on your device. More information on install Imagick can be found [here](https://www.php.net/manual/en/imagick.installation.php).
 
 
 ## Questions
