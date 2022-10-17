@@ -29,7 +29,11 @@ $token = Token::generate();
                 <div class="col-xs-12 col-md-9">
                     <h1>Disable Two Factor</h1>
                     <p>Are you sure?</b></p>
-                    <p>You will be leaving your account less secure and will have to reenable through the account portal to use two factor again.</p><br><br>
+                    <p>You will be leaving your account less secure and will have to re-enable through the account portal to use two factor again.</p>
+                    <?php if ($user->data()->twofaforced == 1 || $settings->forcetwofa == 1) {
+                                echo "<p>Your site administrator has required Two Factor Authentication. This means you will be redirected to the Two Factor Setup if you disable it.</p>";
+                    }?>
+                    <br><br>
                     <a class="btn btn-primary" href="<?=$us_url_root?>users/account.php" role="button">Leave 2FA Enabled</a>
                     <a class="btn btn-danger" href="<?=$us_url_root?>usersc/plugins/two_factor/disable2FA.php?confirmed=1&csrf=<?=$token?>" role="button">Disable 2FA</a>
                     
