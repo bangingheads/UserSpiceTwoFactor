@@ -14,9 +14,12 @@ if($check > 0){
 	err($plugin_name.' has already been installed!');
 }else{
 	$db->query("ALTER TABLE settings ADD twofa BOOLEAN");
+	$db->query("ALTER TABLE settings ADD forcetwofa BOOLEAN");
 	$db->query("ALTER TABLE users ADD twoKey varchar(255)");
-	$db->query("ALTER TABLE users ADD twoEnabled BOOLEAN");
-	$db->query("UPDATE settings SET twofa = 0");
+	$db->query("ALTER TABLE users ADD twoEnabled BOOLEAN DEFAULT 0");
+	$db->query("ALTER TABLE users ADD twofaforced BOOLEAN DEFAULT 0");
+	$db->query("UPDATE settings SET twofa = 1");
+	$db->query("UPDATE settings SET forcetwofa = 0");
  $fields = array(
 	 'plugin'=>$plugin_name,
 	 'status'=>'installed',
@@ -41,6 +44,8 @@ $hooks = [];
 $hooks['login.php']['pre'] = 'hooks/loginpre.php';
 $hooks['loginSuccess']['body'] = 'hooks/loginsuccessbody.php';
 $hooks['account.php']['body'] = 'hooks/accountbody.php';
+$hooks['admin.php?view=user']['form'] = 'hooks/adminuserform.php';
+$hooks['admin.php?view=user']['post'] = 'hooks/adminuserpost.php';
 registerHooks($hooks,$plugin_name);
 
 } //do not perform actions outside of this statement
