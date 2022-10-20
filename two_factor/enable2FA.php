@@ -60,7 +60,7 @@ $qrcode_image = base64_encode($writer->writeString($google2fa_url));
                                 echo "<p>Your site administrator has required Two Factor Authentication.</p>";
                             }?>
                             <p><?php if($imagick) { ?>Scan this QR code with your authenticator app or <?php } ?>Input the key: <b><?php echo $user->data()->twoKey; ?></b></p>
-							<p>You can use any standard MFA app like Google Authenticator or Authy.</p>
+							<p>You can use any standard TOTP MFA app like Google Authenticator or Authy.</p>
                             <?php if($imagick) { ?><p><img src="data:image/png;base64, <?php echo $qrcode_image; ?>"></p><?php } ?>
                             <p>Then enter your 6 digit key here:</p>
                             <p>
