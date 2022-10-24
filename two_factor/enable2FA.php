@@ -8,10 +8,6 @@ Redirect::to($us_url_root.'users/login.php');
 }
 
 use PragmaRX\Google2FA\Google2FA;
-use BaconQrCode\Renderer\ImageRenderer;
-use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
-use BaconQrCode\Renderer\RendererStyle\RendererStyle;
-use BaconQrCode\Writer;
 
 $google2fa = new Google2FA();
 
@@ -25,25 +21,13 @@ if($user->data()->twoEnabled == 1) {
 }
 $siteName = $db->query("SELECT site_name FROM settings")->first()->site_name;
 
-$imagick = extension_loaded('imagick');
-
 $google2fa_url = $google2fa->getQRCodeUrl(
     $siteName,
     $user->data()->email,
     $user->data()->twoKey
 );
-
-if($imagick) {
-$writer = new Writer(
-    new ImageRenderer(
-        new RendererStyle(400),
-        new ImagickImageBackEnd()
-    )
-);
-$qrcode_image = base64_encode($writer->writeString($google2fa_url));
-}
 ?>
-
+<script type="text/javascript" src="<?php echo $us_url_root . "usersc/plugins/two_factor/assets/qrcode.min.js"?>"></script>
 <section class="cid-qABkfm0Pyl mbr-fullscreen mbr-parallax-background" id="header2-0" data-rv-view="1854">
 
     <div class="mbr-overlay" style="opacity: 0.4; background-color: rgb(40, 0, 60);"></div>
@@ -59,9 +43,9 @@ $qrcode_image = base64_encode($writer->writeString($google2fa_url));
                             <?php if ($user->data()->twofaforced == 1 || $settings->forcetwofa == 1) {
                                 echo "<p>Your site administrator has required Two Factor Authentication.</p>";
                             }?>
-                            <p><?php if($imagick) { ?>Scan this QR code with your authenticator app or <?php } ?>Input the key: <b><?php echo $user->data()->twoKey; ?></b></p>
+                            <p>Scan this QR code with your authenticator app or input the key: <b><?php echo $user->data()->twoKey; ?></b></p>
 							<p>You can use any standard TOTP MFA app like Google Authenticator or Authy.</p>
-                            <?php if($imagick) { ?><p><img src="data:image/png;base64, <?php echo $qrcode_image; ?>"></p><?php } ?>
+                            <p><div id="qrcode"></div></p>
                             <p>Then enter your 6 digit key here:</p>
                             <p>
                                 <table border="0">
@@ -86,6 +70,9 @@ $qrcode_image = base64_encode($writer->writeString($google2fa_url));
 <?php require_once $abs_us_root.$us_url_root.'users/includes/page_footer.php'; // the final html footer copyright row + the external js calls ?>
 
 <!-- Place any per-page javascript here -->
+<script type="text/javascript">
+new QRCode(document.getElementById("qrcode"), "<?php echo $google2fa_url?>");
+</script>
 <script>
     $(document).ready(function() {
         $("#twoBtn").click(function(e){

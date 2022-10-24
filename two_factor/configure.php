@@ -21,11 +21,6 @@ $token = Token::generate();
 <p>You can force someone to use Two Factor by editing their user account. (Ignored if Force All Users is enabled)</p>
 <br><br>
 <?php
-if(!extension_loaded('imagick')) {
-?>
-Imagick PHP extension is not loaded, this will cause issues with generating QR code images. For installation instructions please see <a href="https://www.php.net/manual/en/imagick.setup.php">here</a><br><br>
-<?php
-}
 ?>
 
 <!-- left -->

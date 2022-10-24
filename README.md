@@ -20,20 +20,20 @@ Then it will be required to use a code from their device to verify it has been a
 
 Once activated, every login will require a 2FA code from their mobile device.
 
+An administrator can force 2FA on all accounts by configuring the plugin or a specific account by editing the account in UserSpice.
+
 ## Deactivation
 
 A user can disable Two Factor Authentication by the same way it was enabled. The account.php will have a Disable 2FA button that they can click, then confirm they would like to remove it from their account.
 
+If forced by an administrator the user will be required to setup 2FA again before being able to do anything else.
 
-## Troubleshooting
-
-The QR code generation requires the Imagick PHP plugin. If you do not have this installed you will manually have to enter the 2FA code on your device. More information on install Imagick can be found [here](https://www.php.net/manual/en/imagick.installation.php).
 
 
 ## Questions
 
 Any issues? Feel free to open an issue on Github or make a Pull Request.
 
-Need help? Add me on Discord: BangingHeads#0001.
+Need help? Add me on Discord: ``BangingHeads#0001``.
 
 Any help with UserSpice can be asked in their [Discord](https://discord.gg/j25FeHu)

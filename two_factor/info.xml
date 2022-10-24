@@ -6,10 +6,10 @@
   <website>https://github.com/bangingheads/UserSpiceTwoFactor</website>
 
 <!-- the version of the plugin iteself -->
-  <version>1.1.1</version>
+  <version>1.1.2</version>
 
 <!-- release date of THIS version -->
-  <release>October 19, 2022</release>
+  <release>October 23, 2022</release>
 
 <!-- the last version of UserSpice you tested the plugin with -->
   <tested>5.4.5</tested>
